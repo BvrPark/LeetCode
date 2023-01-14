@@ -5,7 +5,7 @@
 
 ### 문제 및 풀이코드
 - [Easy](https://github.com/crupy/LeetCode/tree/master/LeetCode/Easy)
-- Medium
+- [Medium](https://github.com/crupy/LeetCode/tree/master/LeetCode/Medium)
 - Hard
     
 
