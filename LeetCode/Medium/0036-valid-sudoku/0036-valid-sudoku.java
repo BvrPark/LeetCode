@@ -1,16 +1,26 @@
 class Solution {
     public boolean isValidSudoku(char[][] board) {
-    Set seen = new HashSet();
-    for (int i=0; i<9; ++i) {
-        for (int j=0; j<9; ++j) {
-            char number = board[i][j];
-            if (number != '.')
-                if (!seen.add(number + " in row " + i) ||
-                    !seen.add(number + " in column " + j) ||
-                    !seen.add(number + " in block " + i/3 + "-" + j/3))
-                    return false;
+        int N = 9;
+        HashSet<Character>[] rowSet = new HashSet[N];
+        HashSet<Character>[] colSet = new HashSet[N];
+        HashSet<Character>[] squareSet = new HashSet[N];
+        for (int r = 0; r < N; r++) {
+            rowSet[r] = new HashSet<>();
+            colSet[r] = new HashSet<>();
+            squareSet[r] = new HashSet<>();
         }
+        for (int r = 0; r < N; r++) {
+            for (int c = 0; c < N; c++) {
+                char val = board[r][c];
+                if (val == '.') continue;
+                int sPos = (r / 3) * 3 + c / 3;
+                if (rowSet[r].contains(val) || colSet[c].contains(val) || squareSet[sPos].contains(val))
+                    return false;
+                rowSet[r].add(val);
+                colSet[c].add(val);
+                squareSet[sPos].add(val);
+            }
+        }
+        return true;
     }
-    return true;
-}
 }
